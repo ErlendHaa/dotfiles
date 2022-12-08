@@ -25,6 +25,9 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+" Syntax highlighting for toml files
+Plug 'cespare/vim-toml', { 'branch': 'main' }
+
 " installs jedi as a submodule automatically
 if has('python') || has('python3')
     Plug 'davidhalter/jedi-vim'
