@@ -1,2 +1,17 @@
+# Fragment common to C and C++ source files
 CompileFlags:
-    Add: [-Wall, -std=c++11]
+    Add: [-Wall]
+
+---
+# Fragment specific to C source fils
+If:
+  PathMatch: [.*\.h, .*\.c]
+CompileFlags:
+    Add: [-std=c99]
+
+---
+# Fragment specific to C++ files
+If:
+  PathMatch: [.*\.cpp, .*\.hpp]
+CompileFlags:
+    Add: [-std=c++17]
