@@ -22,13 +22,17 @@ for file in $files; do
     ln -s  $(pwd)/$file ${HOME}/$file
 done
 
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    ln -s ${pwd}/clangd/config.yaml ~/Library/Preferences/clangd/config.yaml
+else
+    ln -s ${pwd}/clangd/config.yaml ~/.config/clangd/config.yaml
+fi
+
 if [ -f ${HOME}/.vimrc ]; then
     echo "Moving existing .vimrc -> $olddir/"
     mv ${HOME}/.vimrc $oldir/
 fi
-
-ln -s clangd/config.yaml ~/Library/Preferences/clangd/config.yaml
-
 echo "Fetching vimconfig: https://github.com/timss/vimconf.git"
 git clone https://github.com/timss/vimconf.git ~/vimconf
 
