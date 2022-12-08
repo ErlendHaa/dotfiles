@@ -1,0 +1,16 @@
+#!/bin/bash
+
+repo=$1
+
+cd ~/repo/$repo
+tmux new-session -s $repo -n code -d
+
+# Window layout
+tmux split-window -h -l 10%
+tmux split-window -v
+
+# Open vim in left-most pane
+tmux select-pane -t 0
+tmux send-keys -t 0 "vim ." Enter
+
+tmux at -t $repo

@@ -8,6 +8,7 @@ PS1='\[\033[01;37m\]\u\[\033[00m\]:\[\033[01;32m\]\W\[\033[00m\]\$\[\033[00m\] '
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.8/:$PATH"
 PATH="/Users/ERHA/Library/Python/3.8/bin:$PATH"
+PATH="~/dotfiles/tmux-sessions:$PATH"
 export PATH
 
 # Always use UTF8
