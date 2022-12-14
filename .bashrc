@@ -20,6 +20,9 @@ export HISTFILESIZE="10000"
 export HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
 shopt -s histappend
 
+# fzf: Respect .gitignore and don't exclude hidden files
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+
 # Source additional files; alias
 if [ -f $HOME/.alias ]; then source $HOME/.alias; fi
 
