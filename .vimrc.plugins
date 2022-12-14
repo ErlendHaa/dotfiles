@@ -34,4 +34,4 @@ if has('python') || has('python3')
 endif
 
 " Disable plugings
-let g:plugs_disabled = ['vim-autoclose']
+let g:plugs_disabled = ['vim-autoclose', 'ctrlp.vim']
