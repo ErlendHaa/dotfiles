@@ -16,6 +16,7 @@ alias vimrc="vim $HOME/.vimrc"
 alias vimfirst="vim $HOME/.vimrc.first"
 alias vimlast="vim $HOME/.vimrc.last"
 alias vimplug="vim $HOME/.vimrc.plugins"
+alias tmuxconf="vim $HOME/.tmux.conf"
 
 # Git
 alias glog="git log --graph --color=always --format=\"%C(auto)%h%d %s %C(green)%C(bold)%cr\""
