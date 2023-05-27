@@ -10,7 +10,7 @@ ln -s -f -r vimconf/.vimrc .vimrc
 
 mkdir -p $olddir
 
-files=".bashrc .alias .vimrc.first .vimrc.last .vimrc.plugins .vimrc .tmux.conf .gitconfig .gitignore"
+files=".bashrc .alias .vimrc.first .vimrc.last .vimrc.plugins .vimrc .tmux.conf .gitconfig .gitignore .config/nvim/init.lua"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     files="${files} .bash_profile"

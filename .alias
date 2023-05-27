@@ -16,6 +16,7 @@ alias vimrc="vim $HOME/.vimrc"
 alias vimfirst="vim $HOME/.vimrc.first"
 alias vimlast="vim $HOME/.vimrc.last"
 alias vimplug="vim $HOME/.vimrc.plugins"
+alias nviminit="vim $HOME/.config/nvim/init.lua"
 alias tmuxconf="vim $HOME/.tmux.conf"
 
 # Git
