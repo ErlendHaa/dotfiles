@@ -22,7 +22,7 @@ for file in $files; do
         mv ${HOME}/$file $olddir/
     fi
 
-    ln -s  $(pwd)/$file ${HOME}/$file
+    ln -sf  $(pwd)/$file ${HOME}/$file
 done
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
