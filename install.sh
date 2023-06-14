@@ -6,7 +6,7 @@ if [ ! -d "vimconf" ]; then
     git clone https://github.com/timss/vimconf.git
 fi
 
-ln -s -f -r vimconf/.vimrc .vimrc
+ln -sf vimconf/.vimrc .vimrc
 
 mkdir -p $olddir
 
