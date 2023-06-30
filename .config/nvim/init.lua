@@ -320,6 +320,22 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+vim.api.nvim_create_autocmd(
+    {
+        "BufNewFile",
+        "BufRead",
+    },
+    {
+        pattern = "*.go",
+        callback = function()
+          vim.opt.shiftwidth = 4
+          vim.opt.tabstop = 4
+          vim.opt.softtabstop = 0
+          vim.opt.expandtab  = false
+        end
+    }
+)
+
 -- Tree structure
 require("nvim-tree").setup()
 
