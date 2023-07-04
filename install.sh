@@ -12,6 +12,8 @@ mkdir -p $olddir
 
 files=".bashrc .alias .vimrc.first .vimrc.last .vimrc.plugins .vimrc .tmux.conf .gitconfig .gitignore .config/nvim/init.lua"
 
+mkdir -p ${HOME}/.config/nvim
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     files="${files} .bash_profile"
 fi
@@ -26,8 +28,10 @@ for file in $files; do
 done
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
+    mkdir -p ~/Library/Preferences/clangd
     ln -s $(pwd)/clangd/config.yaml ~/Library/Preferences/clangd/config.yaml
 else
+    mkdir -p ${HOME}/.config/clangd
     ln -s $(pwd)/clangd/config.yaml ~/.config/clangd/config.yaml
 fi
 
