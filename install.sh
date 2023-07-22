@@ -10,7 +10,7 @@ ln -sf vimconf/.vimrc .vimrc
 
 mkdir -p $olddir
 
-files=".bashrc .alias .vimrc.first .vimrc.last .vimrc.plugins .vimrc .tmux.conf .gitconfig .gitignore .config/nvim/init.lua"
+files=".bashrc .alias .vimrc.first .vimrc.last .vimrc.plugins .vimrc .tmux.conf .gitconfig .gitignore .config/nvim/init.lua .ssh/config"
 
 mkdir -p ${HOME}/.config/nvim
 
