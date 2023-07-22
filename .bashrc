@@ -21,6 +21,9 @@ if [ -f $HOME/.alias ]; then source $HOME/.alias; fi
 
 # Enable git completion on macos/bash
 if [[ "$OSTYPE" == "darwin"* && "$SHELL" == "/bin/bash" ]]; then
+    if [ ! -f ~/.git-completion.bash ]; then
+        curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+    fi
     . ~/.git-completion.bash
 fi
 
