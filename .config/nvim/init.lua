@@ -540,13 +540,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = {"*.c", "*.h", "*.cpp", "*.hpp", "*.go", "*.py", "*.rs", "*.txt", "*.md", "*.rst"},
   command = "%s/\\s\\+$//e",
 })
-
--- autocmd WinNew * wincmd L
--- local vWindowGroup = vim.api.nvim_create_augroup("VerticalWindow", { clear = true })
--- vim.api.nvim_create_autocmd("VerticalWindows", {
---   command = [[WinNew * windcmd L]],
---   group   = vWindowGroup,
--- })
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
