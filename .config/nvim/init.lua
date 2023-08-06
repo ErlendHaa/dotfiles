@@ -64,9 +64,19 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
   
-  -- The glorious colorscheme
   'rktjmp/lush.nvim',
-  'metalelf0/jellybeans-nvim',
+
+  -- Theme inspired by Atom
+  'navarasu/onedark.nvim',
+
+  -- The glorious colorscheme
+  {
+    'metalelf0/jellybeans-nvim',
+    priority = 1000,
+    config = function()
+      vim.cmd('colorscheme jellybeans-nvim')
+    end,
+  },
 
   -- Seamless navigation between tmux and vim panes
   { 
@@ -157,15 +167,6 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
-
-  {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
     -- See `:help lualine.txt`
@@ -235,7 +236,6 @@ require('lazy').setup({
   },
 }, {})
 
-vim.cmd('colorscheme jellybeans-nvim')
 -- vim.opt.background = dark
 
 -- [[ Setting options ]]
