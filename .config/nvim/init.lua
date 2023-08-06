@@ -246,6 +246,7 @@ vim.opt.smarttab = true
 vim.opt.softtabstop = 1
 vim.opt.tabstop = 4
 vim.opt.gdefault = true
+vim.opt.nrformats:append({'alpha'})--- incr/decr letters C-a/-x
 
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
