@@ -245,6 +245,7 @@ vim.opt.shiftwidth = 0
 vim.opt.smarttab = true
 vim.opt.softtabstop = 1
 vim.opt.tabstop = 4
+vim.opt.gdefault = true
 
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
