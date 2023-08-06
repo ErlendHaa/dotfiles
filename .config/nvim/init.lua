@@ -237,6 +237,7 @@ vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.linebreak = true
 vim.g.splitright = true
+vim.g.splitbelow = true
 vim.opt.autoindent = true
 vim.opt.expandtab  = true
 vim.opt.shiftwidth = 0
