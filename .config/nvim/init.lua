@@ -233,6 +233,7 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+vim.wo.wrap = false
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
 vim.wo.linebreak = true
