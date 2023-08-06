@@ -235,6 +235,18 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   { import = 'custom.plugins' },
+
+  {
+    'junegunn/vim-easy-align',
+    config = function()
+      vim.api.nvim_set_keymap('n', 'ga', '<Plug>(EasyAlign)', {
+          desc = 'Start interactive EasyAlign for a motion/text object (e.g. gaip)'
+      })
+      vim.api.nvim_set_keymap('x', 'ga', '<Plug>(EasyAlign)',  {
+          desc = 'Start interactive EasyAlign in visual mode (e.g. vipga)'
+      })
+    end,
+  },
 }, {})
 
 vim.cmd('colorscheme jellybeans-nvim')
