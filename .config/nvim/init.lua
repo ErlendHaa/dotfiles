@@ -32,6 +32,15 @@ require('lazy').setup({
       vim.cmd('colorscheme jellybeans-nvim')
     end,
   },
+  -- All native Python LSP's suck, and none of them have have Code Actions
+  {
+    'neoclide/coc.nvim',
+    branch = 'release',
+    config = function()
+      -- Automatically install coc-pyright
+      vim.g.coc_global_extensions = { 'coc-pyright' }
+    end
+  },
 
   -- Seamless navigation between tmux and vim panes
   { 
@@ -400,6 +409,14 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
+  local is_python = vim.bo.filetype == 'python'
+  local coc_active = vim.g.coc_service_initialized == 1
+
+  if is_python and coc_active then
+    -- If CoC is active for Python, skip LSP key mappings
+    return
+  end
+
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -442,15 +459,44 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'python',
+  callback = function()
+    -- Ensure we're not duplicating setup if LSP is already running
+    local lsp_attached = #vim.lsp.get_active_clients({ bufnr = 0 }) > 0
+    if lsp_attached then return end
+
+    -- Set key mappings for CoC when in a Python file
+    local nmap = function(keys, func, desc)
+      if desc then
+        desc = 'CoC: ' .. desc
+      end
+      vim.keymap.set('n', keys, func, { buffer = 0, desc = desc })
+    end
+
+    nmap('<leader>rn', '<Plug>(coc-rename)', '[R]e[n]ame')
+    nmap('<leader>ca', '<Plug>(coc-codeaction)', '[C]ode [A]ction')
+    nmap('gd', '<Plug>(coc-definition)', '[G]oto [D]efinition')
+    nmap('gr', '<Plug>(coc-references)', '[G]oto [R]eferences')
+    nmap('gI', '<Plug>(coc-implementation)', '[G]oto [I]mplementation')
+    nmap('<leader>D', '<Plug>(coc-type-definition)', 'Type [D]efinition')
+    nmap('<leader>ds', '<cmd>CocList symbols<CR>', '[D]ocument [S]ymbols')
+    nmap('<leader>ws', '<cmd>CocList workspaceSymbols<CR>', '[W]orkspace [S]ymbols')
+    nmap('K', '<cmd>CocAction("doHover")<CR>', 'Hover Documentation')
+    nmap('<C-k>', '<cmd>CocAction("signatureHelp")<CR>', 'Signature Documentation')
+  end
+})
+
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
+--
+-- Note if CoC is running, it will take presidence over native LSP servers
 local servers = {
   clangd  = {},
   gopls   = {},
-  pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
 
