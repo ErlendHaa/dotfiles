@@ -202,8 +202,6 @@ require('lazy').setup({
   'github/copilot.vim',
 }, {})
 
--- vim.opt.background = dark
-
 -- [[ Setting options ]]
 
 -- Set highlight on search
@@ -401,6 +399,9 @@ require('nvim-treesitter.configs').setup {
     },
   },
 }
+
+-- Inherrit terminal background
+vim.cmd('hi Normal ctermbg=none guibg=none')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
