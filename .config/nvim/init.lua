@@ -497,7 +497,7 @@ vim.api.nvim_create_autocmd('FileType', {
 local servers = {
   clangd  = {},
   gopls   = {},
-  -- rust_analyzer = {},
+  rust_analyzer = {},
   -- tsserver = {},
 
   lua_ls = {

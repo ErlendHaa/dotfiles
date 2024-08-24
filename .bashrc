@@ -34,3 +34,4 @@ if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integr
 if [ -f $HOME/.localrc ]; then
     . $HOME/.localrc
 fi
+. "$HOME/.cargo/env"
