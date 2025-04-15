@@ -586,7 +586,8 @@ cmp.setup {
   },
 }
 
+-- Remove traling witespace
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = {"*.c", "*.h", "*.cpp", "*.hpp", "*.go", "*.py", "*.rs", "*.txt", "*.md", "*.rst"},
+  pattern = {"*.c", "*.h", "*.cpp", "*.hpp", "*.go", "*.py", "*.rs", "*.txt", "*.md", "*.rst", "*.tsx", "*.ts", "*.toml"},
   command = "%s/\\s\\+$//e",
 })
