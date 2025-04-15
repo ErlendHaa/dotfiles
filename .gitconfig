@@ -11,10 +11,21 @@
     helper = cache --timeout=3600
 [push]
     default = simple
+    autoSetupRemote = true
 [diff]
     tool = vimdiff
 [difftool]
     prompt = false
+[fetch]
+    prune = true
+    all = true
+[branch]
+    sort = -committerdate
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 [alias]
     # listing aliases
     la = "!git config -l | grep alias | cut -c 7-"
