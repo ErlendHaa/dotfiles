@@ -35,3 +35,5 @@ if [ -f $HOME/.localrc ]; then
     . $HOME/.localrc
 fi
 . "$HOME/.cargo/env"
+
+export HOMEBREW_NO_AUTO_UPDATE=1
