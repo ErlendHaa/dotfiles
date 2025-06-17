@@ -1,0 +1,13 @@
+if [[ "$SHELL" == "/bin/bash" ]]; then
+    if [ ! -f ~/.git-completion.bash ]; then
+        curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
+    fi
+    . ~/.git-completion.bash
+fi
+
+if [[ ! -e "$HOME/Library/Preferences/clangd/config.yaml" && -f "$HOME/clangd/config.yaml" ]]; then
+    mkdir -p "$HOME/Library/Preferences/clangd"
+    ln -s "$HOME/clangd/config.yaml" "$HOME/Library/Preferences/clangd/config.yaml"
+fi
+
+export HOMEBREW_NO_AUTO_UPDATE=1

@@ -19,12 +19,6 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --e
 # Source additional files; alias
 if [ -f $HOME/.alias ]; then source $HOME/.alias; fi
 
-# Enable git completion on macos/bash
-if [[ "$OSTYPE" == "darwin"* && "$SHELL" == "/bin/bash" ]]; then
-    if [ ! -f ~/.git-completion.bash ]; then
-        curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
-    fi
-    . ~/.git-completion.bash
 fi
 
 # BEGIN_KITTY_SHELL_INTEGRATION
@@ -37,3 +31,12 @@ fi
 . "$HOME/.cargo/env"
 
 export HOMEBREW_NO_AUTO_UPDATE=1
+# OS spesific configuration
+case "$(uname)" in
+  Darwin)
+    [ -f "$HOME/.osrc.darwin" ] && . "$HOME/.osrc.darwin"
+    ;;
+  Linux)
+    [ -f "$HOME/.osrc.linux" ] && . "$HOME/.osrc.linux"
+    ;;
+esac
