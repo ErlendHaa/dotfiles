@@ -1,4 +1,3 @@
-if [ -f $HOME/.bashrc ]; then
-    source $HOME/.bashrc
-fi
-. "$HOME/.cargo/env"
+# Load the user's .bashrc if it exists
+
+[ -f $HOME/.bashrc ] && . $HOME/.bashrc
