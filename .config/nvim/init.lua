@@ -591,3 +591,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = {"*.c", "*.h", "*.cpp", "*.hpp", "*.go", "*.py", "*.rs", "*.txt", "*.md", "*.rst", "*.tsx", "*.ts", "*.toml"},
   command = "%s/\\s\\+$//e",
 })
+
+-- Recognised dotfiles as shell scrips
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = ".*rc*",
+  callback = function()
+    vim.bo.filetype = "sh"
+  end,
+})

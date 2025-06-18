@@ -57,6 +57,9 @@ augroup SyntaxSettings
     autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 augroup END
 
+" Recognised dotfiles as shell scrips
+au BufNewFile,BufRead .* set filetype=sh
+
 " highlight the close tag separately from the open tag 
 let g:vim_jsx_pretty_highlight_close_tag = 0
 
