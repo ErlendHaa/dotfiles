@@ -22,5 +22,8 @@ alias tmuxconf="vim $HOME/.tmux.conf"
 # Git
 alias glog="git log --graph --color=always --format=\"%C(auto)%h%d %s %C(green)%C(bold)%cr\""
 
+# cfg / dotfiles management
+alias cfg='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
 # Misc
 alias ipython="ipython --TerminalInteractiveShell.editing_mode=vi"
