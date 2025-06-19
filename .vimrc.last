@@ -4,26 +4,6 @@ vmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" Omnisharp-vim
-let g:OmniSharp_highlighting = 0
-
-" Don't autoselect first omnicomplete option, show options even if there is only
-" one (so the preview documentation is accessible). Remove 'preview', 'popup'
-" and 'popuphidden' if you don't want to see any documentation whatsoever.
-" Note that neovim does not support `popuphidden` or `popup` yet:
-" https://github.com/neovim/neovim/issues/10996
-if has('patch-8.1.1880')
-  set completeopt=longest,menuone,popuphidden
-  " Highlight the completion documentation popup background/foreground the same as
-  " the completion menu itself, for better readability with highlighted
-  " documentation.
-  set completepopup=highlight:Pmenu,border:off
-else
-  set completeopt=longest,menuone,preview
-  " Set desired preview window height for viewing documentation.
-  set previewheight=5
-endif
-
 "Use tabs for go files
 autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=0 noexpandtab
 
@@ -55,63 +35,75 @@ augroup SyntaxSettings
 augroup END
 
 " Recognised dotfiles as shell scrips
-au BufNewFile,BufRead .* set filetype=sh
+au BufNewFile,BufRead *.{sh,bash,zsh} set filetype=sh
+au BufNewFile,BufRead .bashrc,.profile,.zshrc,.localrc,.osrc.darwin,.osrc.linux set filetype=sh
+filetype plugin indent on
 
-" highlight the close tag separately from the open tag 
+" highlight the close tag separately from the open tag
 let g:vim_jsx_pretty_highlight_close_tag = 0
 
-" Todo switch on linux/macos
-set guifont=DroidSansMono_Nerd_Font:h11
-let g:airline_powerline_fonts = 1
+" Highlight yanked text
+let g:highlightedyank_highlight_duration = 100  " in milliseconds
 
-set wildignore+=*/node_modules*
-
-" CtrlP ignore
-let g:ctrlp_custom_ignore = { 
-    \ 'dir' : '\v[\/](node_modules|bin|obj)' 
-\}
-
-" Format Json buffer, requires jq 
+" Format Json buffer, requires jq
 com! JSON %!jq .
-
-" Hacky solution to a ctrl bug
-let &t_TI = "\<Esc>[>4;1m"
-let &t_TE = "\<Esc>[>4m"
-
-" set dir for ctags index
-set tags=tags
 
 "" lsp-vim settings
 function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
+    " Signs
     setlocal signcolumn=yes
+
+    " Tag support
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gs <plug>(lsp-document-symbol-search)
-    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
-    nmap <buffer> E <plug>(lsp-document-diagnostics)
-    nmap <buffer> K <plug>(lsp-hover)
-    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
-    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
+    " Key mappings for LSP features
+    nmap <buffer> gd :LspDefinition<CR>
+    nmap <buffer> gs :LspDocumentSymbol<CR>
+    nmap <buffer> gS :LspWorkspaceSymbol<CR>
+    nmap <buffer> gr :LspReferences<CR>
+    nmap <buffer> gi :LspImplementation<CR>
+    nmap <buffer> gt :LspTypeDefinition<CR>
+    nmap <buffer> <leader>rn :LspRename<CR>
+    nmap <buffer> [g :LspPreviousDiagnostic<CR>
+    nmap <buffer> ]g :LspNextDiagnostic<CR>
+    nmap <buffer> E :LspDocumentDiagnostics<CR>
+    nmap <buffer> K :LspHover<CR>
+    nmap <buffer> ca :LspCodeAction<CR>
+
+    let g:lsp_diagnostics_enabled = 1
+    let g:lsp_code_action_signs_enabled = 1
     let g:lsp_diagnostics_echo_cursor = 1
-    let g:lsp_format_sync_timeout = 1000
-    let g:lsp_diagnostics_highlights_enabled = 0
-    autocmd! BufWritePre *.rs, call execute('LspDocumentFormatSync')
+    let g:lsp_diagnostics_virtual_text_enabled = 1
+    let g:lsp_diagnostics_highlights_enabled = 1
 
+    highlight link LspErrorText Comment
+    highlight link LspWarningText Comment
+    highlight link LspInformationText Comment
+    highlight link LspHintText Comment
 endfunction
 
 augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd!
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
+if executable('rust-analyzer')
+  au User lsp_setup call lsp#register_server({
+        \   'name': 'rust-analyzer',
+        \   'cmd': {server_info->['rust-analyzer']},
+        \   'whitelist': ['rust'],
+        \   'initialization_options': {
+        \     'cargo': {
+        \       'buildScripts': {
+        \         'enable': v:true,
+        \       },
+        \     },
+        \     'procMacro': {
+        \       'enable': v:true,
+        \     },
+        \   },
+        \ })
+endif
 
 let g:lsp_settings = {
 \  'clangd': {'cmd': ['clangd', '--enable-config', '-enable-snippets']},
@@ -119,11 +111,6 @@ let g:lsp_settings = {
 
 autocmd FileType c,cpp,h,hpp,go,py,rs,txt,md,rst,js autocmd BufWritePre <buffer> %s/\s\+$//e
 
-" Use <leader>gf for git files
 nnoremap <leader>gf :GFiles<CR>
-
-" Use <leader>sf for all files
 nnoremap <leader>sf :Files<CR>
-
-" Use <leader>sg for grep-like fuzzy search
 nnoremap <leader>sg :Rg<CR>
