@@ -29,8 +29,8 @@ autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=0 noexpandtab
 
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <leader>gt :NERDTreeToggle<CR>
+nnoremap <leader>gf :NERDTreeFind<CR>
 
 let g:NERDTreeWinSize=50
 
