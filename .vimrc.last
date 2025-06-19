@@ -121,3 +121,12 @@ let g:lsp_settings = {
 \}
 
 autocmd FileType c,cpp,h,hpp,go,py,rs,txt,md,rst,js autocmd BufWritePre <buffer> %s/\s\+$//e
+
+" Use <leader>gf for git files
+nnoremap <leader>gf :GFiles<CR>
+
+" Use <leader>sf for all files
+nnoremap <leader>sf :Files<CR>
+
+" Use <leader>sg for grep-like fuzzy search
+nnoremap <leader>sg :Rg<CR>
