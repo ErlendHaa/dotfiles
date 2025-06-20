@@ -18,6 +18,8 @@ alias vimlast="vim $HOME/.vimrc.last"
 alias vimplug="vim $HOME/.vimrc.plugins"
 alias nviminit="vim $HOME/.config/nvim/init.lua"
 alias tmuxconf="vim $HOME/.tmux.conf"
+alias linuxconf="vim $HOME/.osrc.linux"
+alias darwinconf="vim $HOME/.osrc.darwin"
 
 # Git
 alias glog="git log --graph --color=always --format=\"%C(auto)%h%d %s %C(green)%C(bold)%cr\""
