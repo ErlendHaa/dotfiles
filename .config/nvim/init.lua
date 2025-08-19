@@ -64,9 +64,6 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
 
-  -- Directory tree
-  'nvim-tree/nvim-tree.lua',
-
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
@@ -294,9 +291,6 @@ vim.api.nvim_create_autocmd(
         end
     }
 )
-
--- Tree structure
-require("nvim-tree").setup()
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
