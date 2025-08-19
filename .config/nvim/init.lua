@@ -21,9 +21,6 @@ require('lazy').setup({
   
   'rktjmp/lush.nvim',
 
-  -- Theme inspired by Atom
-  'navarasu/onedark.nvim',
-
   -- The glorious colorscheme
   {
     'metalelf0/jellybeans-nvim',
