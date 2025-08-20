@@ -109,7 +109,12 @@ let g:lsp_settings = {
 \  'clangd': {'cmd': ['clangd', '--enable-config', '-enable-snippets']},
 \}
 
-autocmd FileType c,cpp,h,hpp,go,py,rs,txt,md,rst,js autocmd BufWritePre <buffer> %s/\s\+$//e
+" Trim whitespace on save. Exclude filetypes by adding them to the index list.
+" Eg. 'cpp'
+augroup TrimWhitespace
+  autocmd!
+  autocmd BufWritePre * if index([ ],&filetype) < 0 | %s/\s\+$//e | endif
+augroup END
 
 nnoremap <leader>gf :GFiles<CR>
 nnoremap <leader>sf :Files<CR>
