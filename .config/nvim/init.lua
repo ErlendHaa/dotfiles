@@ -18,7 +18,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  
+
   'rktjmp/lush.nvim',
 
   -- The glorious colorscheme
@@ -40,7 +40,7 @@ require('lazy').setup({
   },
 
   -- Seamless navigation between tmux and vim panes
-  { 
+  {
     'alexghergh/nvim-tmux-navigation',
     config = function()
 
