@@ -105,6 +105,8 @@ if executable('rust-analyzer')
         \ })
 endif
 
+autocmd BufReadPost *.rs if !exists("g:rust_warmup_done") | let g:rust_warmup_done = 1 | call system('cargo check &') | endif
+
 let g:lsp_settings = {
 \  'clangd': {'cmd': ['clangd', '--enable-config', '-enable-snippets']},
 \}
