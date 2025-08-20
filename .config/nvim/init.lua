@@ -558,10 +558,18 @@ cmp.setup {
   },
 }
 
--- Remove traling witespace
+-- Remove trailing whitespace on safe. Opt-out with exclude-list
 vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = {"*.c", "*.h", "*.cpp", "*.hpp", "*.go", "*.py", "*.rs", "*.txt", "*.md", "*.rst", "*.tsx", "*.ts", "*.toml"},
-  command = "%s/\\s\\+$//e",
+  pattern = "*",
+  callback = function()
+    local exclude = {
+      csv = true,
+      tsv = true,
+    }
+    if not exclude[vim.bo.filetype] then
+      vim.cmd([[%s/\s\+$//e]])
+    end
+  end,
 })
 
 -- Recognised dotfiles as shell scrips
