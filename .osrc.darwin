@@ -3,6 +3,9 @@ if [[ "$SHELL" == "/bin/bash" ]]; then
         curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash
     fi
     . ~/.git-completion.bash
+
+    [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+
 fi
 
 if [[ ! -e "$HOME/Library/Preferences/clangd/config.yaml" && -f "$HOME/clangd/config.yaml" ]]; then
