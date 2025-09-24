@@ -1,7 +1,7 @@
 # File handling and moving around
 alias cd..="cd .."
 alias ls="ls --color=auto"
-alias ll="ls -l --color=auto"
+alias ll="ls -lh --color=auto"
 
 # General
 alias tree="tree -C"
