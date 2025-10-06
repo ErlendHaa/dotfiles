@@ -35,6 +35,8 @@ esac
 [ -f $HOME/.alias   ] && . $HOME/.alias
 [ -f $HOME/.localrc ] && . $HOME/.localrc
 
+set -o vi
+
 # Machine specific configuration
 #
 #   Configurations that are specific to a local machine and thus should be
