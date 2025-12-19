@@ -6,8 +6,15 @@ alias ll="ls -lh --color=auto"
 # General
 alias tree="tree -C"
 alias python="python3"
-alias reload="source ~/.bashrc"
+
 alias curl="curl -w '\n'" # Add newline after response
+
+# Reload config
+if [ -n "$BASH_VERSION" ]; then
+  alias reload="source ~/.bashrc"
+elif [ -n "$ZSH_VERSION" ]; then
+    alias reload="source ~/.zshrc"
+fi
 
 # Shorthand for editing dotfiles
 alias aliases="vim $HOME/.alias"
