@@ -336,7 +336,7 @@ require('nvim-treesitter.configs').setup {
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
 
-  highlight = { enable = false, disable = { 'c', 'cpp'} },
+  highlight = { enable = true, disable = { 'c', 'cpp', 'rust'} },
   indent = { enable = true, disable = { 'python' } },
   incremental_selection = { enable = true,
     keymaps = {
