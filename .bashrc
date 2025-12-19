@@ -22,7 +22,10 @@ if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integr
     source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash";
 fi
 
-# OS spesific configuration
+# Os specific configuration
+#
+#   Configurations that are specific to an operating system should be placed
+#   in `.osrc.darwin` or `.osrc.linux` depending on the OS.
 case "$(uname)" in
   Darwin)
     [ -f "$HOME/.osrc.darwin" ] && . "$HOME/.osrc.darwin"
@@ -33,17 +36,11 @@ case "$(uname)" in
 esac
 
 [ -f $HOME/.alias   ] && . $HOME/.alias
-[ -f $HOME/.localrc ] && . $HOME/.localrc
-
-set -o vi
 
 # Machine specific configuration
 #
 #   Configurations that are specific to a local machine and thus should be
 #   checked in should be placed in `.localrc`.
-#
-#
-# Os specific configuration
-#
-#   Configurations that are specific to an operating system should be placed
-#   in `.osrc.darwin` or `.osrc.linux` depending on the OS.
+[ -f $HOME/.localrc ] && . $HOME/.localrc
+
+set -o vi
