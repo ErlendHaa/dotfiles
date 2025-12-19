@@ -19,6 +19,7 @@ fi
 # Shorthand for editing dotfiles
 alias aliases="vim $HOME/.alias"
 alias bashrc="vim $HOME/.bashrc"
+alias zshrc="vim $HOME/.zshrc"
 alias vimrc="vim $HOME/.vimrc"
 alias vimfirst="vim $HOME/.vimrc.first"
 alias vimlast="vim $HOME/.vimrc.last"
