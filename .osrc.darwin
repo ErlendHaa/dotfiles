@@ -8,6 +8,11 @@ if [ -n "$BASH_VERSION" ]; then
 
 fi
 
+if [ -n "$ZSH_VERSION" ]; then
+  autoload -Uz compinit
+  compinit
+fi
+
 if [[ ! -e "$HOME/Library/Preferences/clangd/config.yaml" && -f "$HOME/clangd/config.yaml" ]]; then
     mkdir -p "$HOME/Library/Preferences/clangd"
     ln -s "$HOME/clangd/config.yaml" "$HOME/Library/Preferences/clangd/config.yaml"
