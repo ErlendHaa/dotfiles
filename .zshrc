@@ -50,3 +50,11 @@ esac
 
 # Vi keybindings
 bindkey -v
+
+ZSH_VI_MODE_DIR="$HOME/.zsh-vi-mode"
+
+if [[ ! -d "$ZSH_VI_MODE_DIR" ]]; then
+  git clone https://github.com/JensGM/zsh-vi-mode.git "$ZSH_VI_MODE_DIR"
+fi
+
+source "$ZSH_VI_MODE_DIR/zsh-vi-mode.plugin.zsh"
