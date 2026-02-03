@@ -26,19 +26,3 @@
     colorMoved = plain
     mnemonicPrefix = true
     renames = true
-[alias]
-    # listing aliases
-    la = "!git config -l | grep alias | cut -c 7-"
-
-    # misc
-    s = status
-
-    # inspect last commit
-    dl = "!git lg2 -1"
-    dlc = diff --cached HEAD^
-
-    # finding file
-    f = "!git ls-files | grep -i"
-
-    # diff with vim
-    d = difftool
